@@ -1,0 +1,30 @@
+{
+  "name": "express-routes-mapper",
+  "version": "0.0.1",
+  "description": "a small mapper for express routes",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "routes",
+    "mapper",
+    "routing",
+    "map"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudolfsonjunior/express-routes-mapper.git"
+  },
+  "author": "Lukas Aichbauer  <rudolfson.junior@gmail.com> (https://github.com/rudolfsonjunior/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
