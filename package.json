@@ -1,6 +1,6 @@
 {
   "name": "express-routes-mapper",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "a small mapper for express routes",
   "main": "./dist/index.js",
   "scripts": {
