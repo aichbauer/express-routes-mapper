@@ -19,14 +19,16 @@ Create your routes file:
 
 ```js
 // es6
-export default const routes = {
+const routes = {
 
   'POST /user': 'UserController.create'
 
 }
 
+export default routes;
+
 //es5
-module.exports.routes = {
+module.exports = {
 
   'POST /user': 'UserController.create'
 
@@ -90,8 +92,14 @@ The magic happens here:
 * `import routes from './config/routes';` the file where all the routes are mapped
 * `import route from 'express-routes-mapper';` the package that makes the mapping possible
 * `app.use('/', route(routes));` tell express to use the mapped routes
+and here
+* `var routes = require('./config/routes');` the file where all the routes are mapped
+* `var route = require('express-routes-mapper');` the package that makes the mapping possible
+* `app.use('/', route(routes));` tell express to use the mapped routes
+
 
 ```js
+//es6
 import express from 'express';
 import http from 'http';
 
@@ -100,7 +108,7 @@ import route from 'express-routes-mapper';
 
 const app = express();
 const server = http.Server(app);
-const port = process.env.PORT || config.port;
+const port = 4444;
 
 app.use('/', route(routes));
 
@@ -108,4 +116,22 @@ server.listen(port, function() {
   console.log('There we go ♕');
   console.log(`Gladly listening on http://127.0.0.1:${port}`);
 });
+
+//es5
+var express = require('express');
+var http = require('http');
+
+var routes = require('./config/routes');
+var route = require('express-routes-mapper');
+
+var app = express();
+var server = http.Server(app);
+var port = 4444;
+
+app.use('/', route(routes));
+
+server.listen(port, function(){
+  console.log('There we go ♕');
+  console.log('Gladly listening on http://127.0.0.1:' + port);
+})
 ```
