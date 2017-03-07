@@ -3,7 +3,7 @@ module.exports = {
 
   'get': function (req, res) {
 
-    res.send('get user')
+    res.send('get user');
 
   },
 

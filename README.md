@@ -108,7 +108,7 @@ import mapRoutes from 'express-routes-mapper';
 
 const app = express();
 const server = http.Server(app);
-const port = 4444;
+const port = 3338;
 
 app.use('/', mapRoutes(routes));
 
@@ -126,7 +126,7 @@ var mapRoutes = require('express-routes-mapper');
 
 var app = express();
 var server = http.Server(app);
-var port = 4444;
+var port = 3339;
 
 app.use('/', mapRoutes(routes));
 
