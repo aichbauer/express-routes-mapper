@@ -90,12 +90,12 @@ Your app.js could look a bit like this:
 
 The magic happens here:
 * `import routes from './config/routes';` the file where all the routes are mapped
-* `import route from 'express-routes-mapper';` the package that makes the mapping possible
-* `app.use('/', route(routes));` tell express to use the mapped routes
+* `import mapRoutes from 'express-routes-mapper';` the package that makes the mapping possible
+* `app.use('/', mapRoutes(routes));` tell express to use the mapped routes
 and here
 * `var routes = require('./config/routes');` the file where all the routes are mapped
-* `var route = require('express-routes-mapper');` the package that makes the mapping possible
-* `app.use('/', route(routes));` tell express to use the mapped routes
+* `var mapRoutes = require('express-routes-mapper');` the package that makes the mapping possible
+* `app.use('/', mapRoutes(routes));` tell express to use the mapped routes
 
 
 ```js
