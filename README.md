@@ -1,8 +1,14 @@
 # express-routes-mapper
 
-## a simple package to map your routes for your expressjs application
+> a simple package to map your routes for your expressjs application
 
 ## Getting started
+
+- [Start from ground](#start-from-ground)
+- [supported methods](#supported-methods)
+- [dynamic routes](#dynamic-routes)
+
+## Start from ground
 
 This is a example for a simple rest API.
 
@@ -45,7 +51,7 @@ Create a file named UserController.js
 //es6
 export default class UserController {
 
-  create (req,res) {
+  create (req, res) {
 
     res.send('created a User with es6');
 
@@ -56,7 +62,7 @@ export default class UserController {
 //es5
 module.exports = {
 
-  'create': function(req,res){
+  'create': function (req, res) {
 
     res.send('created a User with es5');
 
@@ -133,5 +139,60 @@ app.use('/', mapRoutes(routes));
 server.listen(port, function(){
   console.log('There we go ♕');
   console.log('Gladly listening on http://127.0.0.1:' + port);
-})
+});
+```
+
+## Supported methods
+
+* GET
+* POST
+* PUT
+* DELETE
+
+```js
+{
+
+  'GET    /someroute' : 'SomeController.somefunction',
+  'POST   /someroute' : 'SomeController.somefunction',
+  'PUT    /someroute' : 'SomeController.somefunction',
+  'DELETE /someroute' : 'SomeController.somefunction'
+
+}
+```
+
+## Dynamic routes
+
+ Simply use a colon ':' for defining dynamic routes.
+
+ ```js
+ {
+   'GET /someroute/:id' : 'SomeController.somefunction'
+ }
+ ```
+
+If you make a get request to `http://localhost/someroute/1` the 1 (:id) is now in the 'SomeController accessible.
+
+```js
+//es6
+export default class SomeController {
+
+  somefunction (req, res) {
+
+    let id = req.params.id;
+
+  }
+
+}
+
+//es5
+module.exports = {
+
+  'somefunction': function (req, res) {
+
+    var id = req.params.id
+
+  }
+
+}
+
 ```
