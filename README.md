@@ -104,13 +104,13 @@ import express from 'express';
 import http from 'http';
 
 import routes from './config/routes';
-import route from 'express-routes-mapper';
+import mapRoutes from 'express-routes-mapper';
 
 const app = express();
 const server = http.Server(app);
 const port = 4444;
 
-app.use('/', route(routes));
+app.use('/', mapRoutes(routes));
 
 server.listen(port, function() {
   console.log('There we go ♕');
@@ -122,13 +122,13 @@ var express = require('express');
 var http = require('http');
 
 var routes = require('./config/routes');
-var route = require('express-routes-mapper');
+var mapRoutes = require('express-routes-mapper');
 
 var app = express();
 var server = http.Server(app);
 var port = 4444;
 
-app.use('/', route(routes));
+app.use('/', mapRoutes(routes));
 
 server.listen(port, function(){
   console.log('There we go ♕');
