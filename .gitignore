@@ -1,4 +1,6 @@
 dist/
+examples/
+.npmignore
 
 # Logs
 logs
