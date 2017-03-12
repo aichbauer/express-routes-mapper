@@ -13,4 +13,18 @@ export default class UserController {
 
   }
 
+
+  destroy (req,res) {
+
+    res.send('get user')
+
+  }
+
+
+  update (req,res) {
+
+    res.send('created user: ' + req.body.name);
+
+  }
+
 }
