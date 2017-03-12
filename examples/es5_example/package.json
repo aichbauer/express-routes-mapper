@@ -11,6 +11,6 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "express-routes-mapper": "0.0.4"
+    "express-routes-mapper": "0.0.x"
   }
 }
