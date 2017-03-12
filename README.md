@@ -2,13 +2,14 @@
 
 > a simple package to map your routes for your expressjs application
 
-## Getting started
+## getting started
 
-- [Start from ground](#start-from-ground)
+- [start from ground](#start-from-ground)
 - [supported methods](#supported-methods)
 - [dynamic routes](#dynamic-routes)
+- [set path to controller](#set-path-to-controller)
 
-## Start from ground
+## start from ground
 
 This is a example for a simple rest API.
 
@@ -75,6 +76,8 @@ module.exports = {
 ### 4.) tell express.js app to use our routes
 
 I assume you have a folder structure like this, but it can be adapted to any folder structure. 
+
+If you have a different, folder structure, and want to link to a different path look [here](#set-path-to-controller).
 
 ```
 .
@@ -195,4 +198,47 @@ module.exports = {
 
 }
 
+```
+
+## set path to controller
+
+The only differnce is that you pass in the path to your file in the mapRoutes function.
+* app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
+
+```js
+//es6
+import express from 'express';
+import http from 'http';
+
+import routes from './config/routes';
+import mapRoutes from 'express-routes-mapper';
+
+const app = express();
+const server = http.Server(app);
+const port = 3338;
+
+app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
+
+server.listen(port, function() {
+  console.log('There we go ♕');
+  console.log(`Gladly listening on http://127.0.0.1:${port}`);
+});
+
+//es5
+var express = require('express');
+var http = require('http');
+
+var routes = require('./config/routes');
+var mapRoutes = require('express-routes-mapper');
+
+var app = express();
+var server = http.Server(app);
+var port = 3339;
+
+app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
+
+server.listen(port, function(){
+  console.log('There we go ♕');
+  console.log('Gladly listening on http://127.0.0.1:' + port);
+});
 ```
