@@ -1,3 +1,10 @@
 {
-  "presets": ["env"]
+  "presets": ["env"],
+  "plugins": ["transform-runtime"],
+  "ignore": "./tests/lib/index.js",
+  "env": {
+    "development": {
+      "sourceMaps": "inline"
+    }
+  }
 }

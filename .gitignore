@@ -1,5 +1,7 @@
 dist/
 .npmignore
+coverage
+.nyc_output
 
 # Logs
 logs
