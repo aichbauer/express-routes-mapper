@@ -6,9 +6,10 @@
   "scripts": {
     "start": "gulp",
     "lint": "eslint ./lib/index.js",
-    "test": "ava ./tests/lib/",
+    "test": "gulp && nyc ava ./tests/lib/*",
     "prepublish": "npm start",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "build": "BABEL_ENV=production babel --out-dir=dist index.js"
   },
   "keywords": [
     "express",
@@ -31,13 +32,26 @@
   "devDependencies": {
     "ava": "^0.18.2",
     "babel-core": "^6.23.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.2.1",
+    "coveralls": "^2.12.0",
     "eslint": "^3.17.1",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-uglify": "^2.0.1",
-    "husky": "^0.13.2"
+    "husky": "^0.13.2",
+    "nyc": "^10.1.2"
+  },
+  "ava": {
+    "require": [
+      "babel-core/register"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "tests",
+      "examples"
+    ]
   }
 }
