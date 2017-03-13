@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp",
     "lint": "eslint ./lib/index.js",
-    "test": "nyc ava ./tests/lib/*",
+    "test": "gulp && nyc ava ./tests/lib/*",
     "prepublish": "npm start",
     "precommit": "npm run lint",
     "build": "BABEL_ENV=production babel --out-dir=dist index.js"
@@ -40,7 +40,6 @@
     "eslint-plugin-import": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-uglify": "^2.0.1",
     "husky": "^0.13.2",
     "nyc": "^10.1.2"
   },
