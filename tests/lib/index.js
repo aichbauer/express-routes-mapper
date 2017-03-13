@@ -3,14 +3,11 @@ import mapRoutes from '../../dist/index';
 import mapRoutes2 from '../../dist/index';
 
 const routes = {
-
   'GET /user': 'UserController.get',
   'POST /user/:name': 'UserController.create',
   'DELETE /user/:name/:id': 'UserController.destroy',
   'PUT /user/:name/:id': 'UserController.update',
   'ERROR /user': 'UserController.update'
-  
-
 }
 
 const routes2 = {}
@@ -114,7 +111,6 @@ test('es6 testing', t => {
   t.is('function', typeof(router.stack[7].route.stack[0].handle));
 
   t.is('function', typeof(router));
-
 });
 
 test('Default path to', t => {
