@@ -29,19 +29,16 @@ Create your routes file:
 ```js
 // es6
 const routes = {
-
   'POST /user': 'UserController.create'
-
-}
+};
 
 export default routes;
 
-//es5
+
+// es5
 module.exports = {
-
   'POST /user': 'UserController.create'
-
-}
+};
 ```
 
 Every post request to your server to route '/user' will call the function 'create' on the 'UserController'.
@@ -51,27 +48,25 @@ Every post request to your server to route '/user' will call the function 'creat
 Create a file named UserController.js
 
 ```js
-//es6
+// es6 class syntax
 export default class UserController {
-
   create (req, res) {
-
     res.send('created a User with es6');
+  };
+};
 
-  }
+// if you don't like the es6 class syntax
+const UserController = () => {
+  const create = (req, res) => {
+    res.send('created a User with es6 without a class syntax');
+  };
 
-}
+  return {
+    create,
+  };
+};
 
-//es5
-module.exports = {
-
-  'create': function (req, res) {
-
-    res.send('created a User with es5');
-
-  }
-
-}
+export default UserController;
 ```
 
 
@@ -102,48 +97,26 @@ Your app.js could look a bit like this:
 The magic happens here:
 * `import routes from './config/routes';` the file where all the routes are mapped
 * `import mapRoutes from 'express-routes-mapper';` the package that makes the mapping possible
-* `app.use('/', mapRoutes(routes));` tell express to use the mapped routes
-and here
-* `var routes = require('./config/routes');` the file where all the routes are mapped
-* `var mapRoutes = require('express-routes-mapper');` the package that makes the mapping possible
-* `app.use('/', mapRoutes(routes));` tell express to use the mapped routes
-
+* `const mappedRoutes = mapRoutes(routes);` tell router to use your routes
+* `app.use('/', mappedRoutes);` tell express to use the mapped routes
 
 ```js
-//es6
 import express from 'express';
 import http from 'http';
 
-import routes from './config/routes';
 import mapRoutes from 'express-routes-mapper';
+import routes from './config/routes';
 
 const app = express();
 const server = http.Server(app);
-const port = 3338;
+const port = 4444;
+const mappedRoutes = mapRoutes(routes);
 
-app.use('/', mapRoutes(routes));
+app.use('/', mappedRoutes);
 
-server.listen(port, function() {
+server.listen(port, () => {
   console.log('There we go ♕');
   console.log(`Gladly listening on http://127.0.0.1:${port}`);
-});
-
-//es5
-var express = require('express');
-var http = require('http');
-
-var routes = require('./config/routes');
-var mapRoutes = require('express-routes-mapper');
-
-var app = express();
-var server = http.Server(app);
-var port = 3339;
-
-app.use('/', mapRoutes(routes));
-
-server.listen(port, function(){
-  console.log('There we go ♕');
-  console.log('Gladly listening on http://127.0.0.1:' + port);
 });
 ```
 
@@ -156,12 +129,10 @@ server.listen(port, function(){
 
 ```js
 {
-
   'GET    /someroute' : 'SomeController.somefunction',
   'POST   /someroute' : 'SomeController.somefunction',
   'PUT    /someroute' : 'SomeController.somefunction',
   'DELETE /someroute' : 'SomeController.somefunction'
-
 }
 ```
 
@@ -180,67 +151,37 @@ If you make a get request to `http://localhost/someroute/1` the 1 (:id) is now i
 ```js
 //es6
 export default class SomeController {
-
   somefunction (req, res) {
+    const id = req.params.id;
 
-    let id = req.params.id;
-
-  }
-
-}
-
-//es5
-module.exports = {
-
-  'somefunction': function (req, res) {
-
-    var id = req.params.id
-
-  }
-
-}
-
+    // do some fency stuff with the id
+  };
+};
 ```
 
 ## set path to controller
 
 The only differnce is that you pass in the path to your file in the mapRoutes function.
-* app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
+* `const mappedRoutes = mapRoutes(routes, 'path/to/new/file/')` this path is relative to your root directoy (directory with the package.json)
+* `app.use('/', mappedRoutes);`
 
 ```js
-//es6
+// es6
 import express from 'express';
 import http from 'http';
 
-import routes from './config/routes';
 import mapRoutes from 'express-routes-mapper';
+import routes from './config/routes';
 
 const app = express();
 const server = http.Server(app);
-const port = 3338;
+const port = 4444;
+const mappedRoutes = mapRoutes(routes, 'path/to/new/file/');
 
-app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
+app.use('/', mappedRoutes);
 
-server.listen(port, function() {
+server.listen(port, () => {
   console.log('There we go ♕');
   console.log(`Gladly listening on http://127.0.0.1:${port}`);
-});
-
-//es5
-var express = require('express');
-var http = require('http');
-
-var routes = require('./config/routes');
-var mapRoutes = require('express-routes-mapper');
-
-var app = express();
-var server = http.Server(app);
-var port = 3339;
-
-app.use('/', mapRoutes(routes, '../../../path/to/new/file/'));
-
-server.listen(port, function(){
-  console.log('There we go ♕');
-  console.log('Gladly listening on http://127.0.0.1:' + port);
 });
 ```
