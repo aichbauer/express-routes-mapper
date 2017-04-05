@@ -27,18 +27,11 @@ Create your routes file:
 
 
 ```js
-// es6
 const routes = {
   'POST /user': 'UserController.create'
 };
 
 export default routes;
-
-
-// es5
-module.exports = {
-  'POST /user': 'UserController.create'
-};
 ```
 
 Every post request to your server to route '/user' will call the function 'create' on the 'UserController'.
@@ -55,7 +48,7 @@ export default class UserController {
   };
 };
 
-// if you don't like the es6 class syntax
+// object factory pattern
 const UserController = () => {
   const create = (req, res) => {
     res.send('created a User with es6 without a class syntax');
@@ -149,7 +142,6 @@ server.listen(port, () => {
 If you make a get request to `http://localhost/someroute/1` the 1 (:id) is now in the 'SomeController accessible.
 
 ```js
-//es6
 export default class SomeController {
   somefunction (req, res) {
     const id = req.params.id;
@@ -166,7 +158,6 @@ The only differnce is that you pass in the path to your file in the mapRoutes fu
 * `app.use('/', mappedRoutes);`
 
 ```js
-// es6
 import express from 'express';
 import http from 'http';
 
