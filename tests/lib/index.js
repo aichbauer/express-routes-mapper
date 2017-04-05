@@ -116,5 +116,3 @@ test('Default path to', (t) => {
   const router = mapRoutes(routes2);
   t.is(8, router.stack.length);
 });
-
-
