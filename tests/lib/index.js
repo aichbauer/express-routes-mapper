@@ -1,20 +1,19 @@
 import test from 'ava';
 import mapRoutes from '../../dist/index';
-import mapRoutes2 from '../../dist/index';
 
 const routes = {
   'GET /user': 'UserController.get',
   'POST /user/:name': 'UserController.create',
   'DELETE /user/:name/:id': 'UserController.destroy',
   'PUT /user/:name/:id': 'UserController.update',
-  'ERROR /user': 'UserController.update'
-}
+  'ERROR /user': 'UserController.update',
+};
 
-const routes2 = {}
+const routes2 = {};
 
 // es5 testing
-test('GET /user : UserController.get', t => {
-  let router = mapRoutes(routes, '../examples/es5_example/app/controllers/');
+test('GET /user : UserController.get', (t) => {
+  const router = mapRoutes(routes, '../examples/es5_example/app/controllers/');
 
   // method
   t.is('get', router.stack[0].route.stack[0].method);
@@ -23,7 +22,7 @@ test('GET /user : UserController.get', t => {
   // function name
   t.is('get', router.stack[0].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[0].route.stack[0].handle));
+  t.is('function', typeof (router.stack[0].route.stack[0].handle));
 
   // method
   t.is('post', router.stack[1].route.stack[0].method);
@@ -34,7 +33,7 @@ test('GET /user : UserController.get', t => {
   // function name
   t.is('create', router.stack[1].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[1].route.stack[0].handle));
+  t.is('function', typeof (router.stack[1].route.stack[0].handle));
 
   // method
   t.is('delete', router.stack[2].route.stack[0].method);
@@ -46,7 +45,7 @@ test('GET /user : UserController.get', t => {
   // function name
   t.is('destroy', router.stack[2].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[2].route.stack[0].handle));
+  t.is('function', typeof (router.stack[2].route.stack[0].handle));
 
   // method
   t.is('put', router.stack[3].route.stack[0].method);
@@ -58,14 +57,14 @@ test('GET /user : UserController.get', t => {
   // function name
   t.is('update', router.stack[3].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[3].route.stack[0].handle));
+  t.is('function', typeof (router.stack[3].route.stack[0].handle));
 
-  t.is('function', typeof(router));
+  t.is('function', typeof (router));
 });
 
-test('es6 testing', t => {
-  let router = mapRoutes(routes, '../examples/es6_example/app/controllers/');
-  
+test('es6 testing', (t) => {
+  const router = mapRoutes(routes, '../examples/es6_example/app/controllers/');
+
   // method
   t.is('get', router.stack[4].route.stack[0].method);
   // route
@@ -73,7 +72,7 @@ test('es6 testing', t => {
   // function name
   t.is('get', router.stack[4].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[4].route.stack[0].handle));
+  t.is('function', typeof (router.stack[4].route.stack[0].handle));
 
   // method
   t.is('post', router.stack[5].route.stack[0].method);
@@ -84,7 +83,7 @@ test('es6 testing', t => {
   // function name
   t.is('create', router.stack[5].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[5].route.stack[0].handle));
+  t.is('function', typeof (router.stack[5].route.stack[0].handle));
 
   // method
   t.is('delete', router.stack[6].route.stack[0].method);
@@ -96,7 +95,7 @@ test('es6 testing', t => {
   // function name
   t.is('destroy', router.stack[6].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[6].route.stack[0].handle));
+  t.is('function', typeof (router.stack[6].route.stack[0].handle));
 
   // method
   t.is('put', router.stack[7].route.stack[0].method);
@@ -108,13 +107,13 @@ test('es6 testing', t => {
   // function name
   t.is('update', router.stack[7].route.stack[0].name);
   // function to call
-  t.is('function', typeof(router.stack[7].route.stack[0].handle));
+  t.is('function', typeof (router.stack[7].route.stack[0].handle));
 
-  t.is('function', typeof(router));
+  t.is('function', typeof (router));
 });
 
-test('Default path to', t => {
-  let router = mapRoutes(routes2);
+test('Default path to', (t) => {
+  const router = mapRoutes(routes2);
   t.is(8, router.stack.length);
 });
 
