@@ -6,6 +6,7 @@
   "scripts": {
     "start": "gulp",
     "lint": "eslint ./lib/index.js",
+    "lintFix": "eslint ./lib/index.js --fix",
     "test": "gulp && nyc ava ./tests/lib/*",
     "prepublish": "npm start",
     "precommit": "npm run lint",
