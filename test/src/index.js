@@ -12,7 +12,7 @@ const routes = {
 const routes2 = {};
 
 test('es6 testing', (t) => {
-  const router = mapRoutes(routes, '../examples/es6_example/app/controllers/');
+  const router = mapRoutes(routes, '../examples/app/controllers/');
 
   // method
   t.is('get', router.stack[0].route.stack[0].method);
