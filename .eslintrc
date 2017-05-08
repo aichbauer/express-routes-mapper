@@ -5,6 +5,8 @@
     ],
     "rules": {
         "global-require": 0,
-        "import/no-dynamic-require": 0
+        "import/no-dynamic-require": 0,
+        "new-cap": 0,
+        "no-new": 0
     }
 }
