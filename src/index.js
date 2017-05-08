@@ -1,54 +1,70 @@
-import express from 'express';
 import entries from 'object.entries';
+import express from 'express';
+import path from 'path';
 
 const router = express.Router();
+const cwd = process.cwd();
 
-function mapRoutes(routes, pathToController = '../../../app/controllers/') {
+const isConstructor = (func) => {
+  try {
+    new func();
+  } catch (err) {
+    return false;
+  }
+
+  return true;
+};
+
+const mapRoutes = (routes, pathToController) => {
   let requestMethodPath;
   let requestMethod;
-  let path;
+
   let controllerMethod;
   let controller;
+  let contr;
+
   let handler;
-  let Handler;
-  let c;
-  let myPathToController = pathToController;
+
+  let myPath;
+  const myPathToController = path.join(cwd, pathToController);
 
   const routesArr = entries(routes);
-
-  if (myPathToController[0] !== '.') {
-    myPathToController = `../../../${pathToController}`;
-  }
 
   routesArr.forEach((value) => {
     requestMethodPath = value[0].replace(/\s\s+/g, ' ');
     requestMethod = (requestMethodPath.split(' ')[0]).toLocaleLowerCase();
-    path = requestMethodPath.split(' ')[1];
+    myPath = requestMethodPath.split(' ')[1];
     controller = value[1].split('.')[0];
     controllerMethod = value[1].split('.')[1];
 
     try {
-      // require babel-register, because import is not supported by node
-      require('babel-register');
-      Handler = require(`${myPathToController}${controller}`).default;
-      c = new Handler();
-    } catch (err) {
       handler = require(`${myPathToController}${controller}`);
-      c = handler;
+
+      const isConstructable = isConstructor(handler);
+
+      if (isConstructable) {
+        contr = new handler();
+      } else {
+        contr = handler();
+      }
+    } catch (err) {
+      require('babel-register');
+      handler = require(`${myPathToController}${controller}`).default;
+      contr = new handler();
     }
 
     if (requestMethod === 'get') {
-      router.route(path).get(c[controllerMethod]);
+      router.route(myPath).get(contr[controllerMethod]);
     } else if (requestMethod === 'post') {
-      router.route(path).post(c[controllerMethod]);
+      router.route(myPath).post(contr[controllerMethod]);
     } else if (requestMethod === 'put') {
-      router.route(path).put(c[controllerMethod]);
+      router.route(myPath).put(contr[controllerMethod]);
     } else if (requestMethod === 'delete') {
-      router.route(path).delete(c[controllerMethod]);
+      router.route(myPath).delete(contr[controllerMethod]);
     }
   });
 
   return router;
-}
+};
 
 module.exports = mapRoutes;
