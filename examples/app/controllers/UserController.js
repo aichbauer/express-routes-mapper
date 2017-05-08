@@ -1,30 +1,16 @@
-export default class UserController {
+const UserController = () => {
+  const get = (req, res) => {
+    res.send(`user with id: ${req.params.id}`);
+  };
 
-  get (req,res) {
+  const create = (req, res) => {
+    res.send('created user');
+  };
 
-    res.send('get user')
+  return {
+    get,
+    create,
+  };
+};
 
-  }
-
-
-  create (req,res) {
-
-    res.send('created user: ' + req.body.name);
-
-  }
-
-
-  destroy (req,res) {
-
-    res.send('get user')
-
-  }
-
-
-  update (req,res) {
-
-    res.send('created user: ' + req.body.name);
-
-  }
-
-}
+export default UserController;

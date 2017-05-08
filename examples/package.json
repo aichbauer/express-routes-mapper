@@ -9,11 +9,11 @@
   "author": "Lukas Aichbauer  <rudolfson.junior@gmail.com> (https://github.com/rudolfsonjunior/)",
   "license": "MIT",
   "devDependencies": {
+    "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.1.11",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
-    "gulp-concat": "^2.6.1",
     "gulp-load-plugins": "^1.5.0",
     "gulp-newer": "^1.3.0",
     "gulp-nodemon": "^2.2.1",
@@ -23,6 +23,6 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "express-routes-mapper": "0.0.x"
+    "express-routes-mapper": "^0.1.1"
   }
 }

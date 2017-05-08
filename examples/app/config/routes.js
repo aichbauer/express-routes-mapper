@@ -1,8 +1,6 @@
 const routes = {
-
-  'GET /user': 'UserController.get',
-  'POST /user': 'UserController.create'
-
-}
+  'GET /user:id': 'UserController.get',
+  'POST /user': 'UserController.create',
+};
 
 export default routes;

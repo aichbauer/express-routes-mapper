@@ -11,9 +11,9 @@ const port = 3338;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use('/', mapRoutes(routes));
+app.use('/', mapRoutes(routes, 'examples/app/controllers/'));
 
-server.listen(port, function() {
+server.listen(port, () => {
   console.log('There we go ♕');
   console.log(`Gladly listening on http://127.0.0.1:${port}`);
 });
