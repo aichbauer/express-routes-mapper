@@ -1,5 +1,5 @@
 import test from 'ava';
-import mapRoutes from '../../dist/index';
+import mapRoutes from '../../lib/index';
 
 const routes = {
   'GET /user': 'UserController.get',
