@@ -2,15 +2,17 @@
   "name": "express-routes-mapper",
   "version": "0.1.1",
   "description": "a small mapper for express routes",
-  "main": "./dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "gulp",
-    "lint": "eslint ./lib/index.js",
-    "lintFix": "eslint ./lib/index.js --fix",
-    "test": "gulp && nyc ava ./tests/lib/*",
-    "prepublish": "npm start",
+    "pretest": "npm run lint && npm run babel",
+    "test": "nyc ava",
+    "lint": "eslint ./src/index.js",
+    "lintFix": "eslint ./src/index.js --fix",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm run babel",
     "precommit": "npm run lint",
-    "build": "BABEL_ENV=production babel --out-dir=dist index.js"
+    "prepush": "npm test",
+    "babel": "babel src --out-dir lib"
   },
   "keywords": [
     "express",
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "ava": "^0.18.2",
+    "babel-cli": "^6.24.0",
     "babel-core": "^6.23.1",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.2.1",
@@ -39,8 +42,6 @@
     "eslint": "^3.17.1",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
-    "gulp": "^3.9.1",
-    "gulp-babel": "^6.1.2",
     "husky": "^0.13.2",
     "nyc": "^10.1.2"
   },
