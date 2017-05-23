@@ -23,9 +23,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rudolfsonjunior/express-routes-mapper.git"
+    "url": "git+https://github.com/aichbauer/express-routes-mapper.git"
   },
-  "author": "Lukas Aichbauer  <rudolfson.junior@gmail.com> (https://github.com/rudolfsonjunior/)",
+  "bugs": {
+    "url": "https://github.com/aichbauer/express-routes-mapper/issues"
+  },
+  "homepage": "https://github.com/rudolfsonjunior/express-routes-mapper#readme",
+  "author": "Lukas Aichbauer  <l.aichbauer@gmail.com> (https://github.com/aichbauer/)",
   "license": "MIT",
   "dependencies": {
     "babel-core": "^6.23.1",
