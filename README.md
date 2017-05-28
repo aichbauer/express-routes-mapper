@@ -1,6 +1,6 @@
 # express-routes-mapper
 
-[![Build Status](https://travis-ci.org/rudolfsonjunior/express-routes-mapper.svg?branch=master)](https://travis-ci.org/rudolfsonjunior/express-routes-mapper) [![Coverage Status](https://coveralls.io/repos/github/rudolfsonjunior/express-routes-mapper/badge.svg)](https://coveralls.io/github/rudolfsonjunior/express-routes-mapper)
+[![Build Status](https://travis-ci.org/aichbauer/express-routes-mapper.svg?branch=master)](https://travis-ci.org/aichbauer/express-routes-mapper) [![Coverage Status](https://coveralls.io/repos/github/aichbauer/express-routes-mapper/badge.svg)](https://coveralls.io/github/aichbauer/express-routes-mapper)
 
 > A simple package to map your routes for your expressjs application
 
