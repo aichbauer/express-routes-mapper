@@ -61,6 +61,8 @@ const mapRoutes = (routes, pathToController) => {
       router.route(myPath).put(contr[controllerMethod]);
     } else if (requestMethod === 'delete') {
       router.route(myPath).delete(contr[controllerMethod]);
+    }else if (requestMethod === 'all') {
+        router.route(myPath).all(contr[controllerMethod]);
     }
   });
 
