@@ -36,7 +36,7 @@ Create your routes file:
 
 ```js
 const routes = {
-  'POST /user': 'UserController.create'
+  'POST /user': 'UserController.someMiddleware | UserController.create',
 };
 
 export default routes; // module.exports = routes;
@@ -54,6 +54,10 @@ export default class UserController {
   create (req, res) {
     res.send('created a User with es6 class syntax');
   };
+  
+  someMiddleware (req, res, next) {
+      next();
+  };
 };
 
 // object factory pattern
@@ -61,9 +65,14 @@ const UserController = () => {
   const create = (req, res) => {
     res.send('created a User with without es6 class syntax');
   };
+  
+  const someMiddleware =  (req, res, next)  => {
+      next();
+  };
 
   return {
     create,
+    someMiddleware
   };
 };
 
@@ -129,6 +138,8 @@ server.listen(port, () => {
 - **POST**
 - **PUT**
 - **DELETE**
+- **ALL**(express .all)
+
 
 ```js
 const routes = {

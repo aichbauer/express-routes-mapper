@@ -1,11 +1,23 @@
-import entries from 'object.entries';
-import express from 'express';
-import path from 'path';
+'use strict';
 
-const router = express.Router();
-const cwd = process.cwd();
+var _object = require('object.entries');
 
-const isConstructor = (func) => {
+var _object2 = _interopRequireDefault(_object);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var router = _express2.default.Router();
+var cwd = process.cwd();
+
+var isConstructor = function isConstructor(func) {
   try {
     new func();
   } catch (err) {
@@ -15,54 +27,94 @@ const isConstructor = (func) => {
   return true;
 };
 
-const mapRoutes = (routes, pathToController) => {
-  let requestMethodPath;
-  let requestMethod;
+var mapRoutes = function mapRoutes(routes, pathToController) {
+  var requestMethodPath = void 0;
+  var requestMethod = void 0;
 
-  let controllerMethod;
-  let controller;
-  let contr;
+  var controllerMethod = void 0;
+  var controller = void 0;
+  var contr = void 0;
 
-  let handler;
+  var pathHolder = {};
 
-  let myPath;
-  const myPathToController = path.join(cwd, pathToController);
+  var routeHolder = [];
 
-  const routesArr = entries(routes);
+  var currentRoute = void 0;
 
-  routesArr.forEach((value) => {
+  var handler = void 0;
+
+  var myPath = void 0;
+  var myPathToController = _path2.default.join(cwd, pathToController);
+
+  var routesArr = (0, _object2.default)(routes);
+
+
+
+  routesArr.forEach(function (value) {
     requestMethodPath = value[0].replace(/\s\s+/g, ' ');
-    requestMethod = (requestMethodPath.split(' ')[0]).toLocaleLowerCase();
+    requestMethod = requestMethodPath.split(' ')[0].toLocaleLowerCase();
     myPath = requestMethodPath.split(' ')[1];
-    controller = value[1].split('.')[0];
-    controllerMethod = value[1].split('.')[1];
 
-    try {
-      handler = require(`${myPathToController}${controller}`);
 
-      const isConstructable = isConstructor(handler);
+    value[1].split('|').forEach(function (rHandler) {
+      rHandler = rHandler.trim();
+      controller = rHandler.split('.')[0];
+      controllerMethod = rHandler.split('.')[1];
 
-      if (isConstructable) {
-        contr = new handler();
-      } else {
-        contr = handler();
+      try {
+          handler = require('' + myPathToController + controller);
+
+          var isConstructable = isConstructor(handler);
+
+          if (isConstructable) {
+              contr = new handler();
+          } else {
+              contr = handler();
+          }
+      } catch (err) {
+          require('babel-register');
+          handler = require('' + myPathToController + controller).default;
+          contr = new handler();
       }
-    } catch (err) {
-      require('babel-register');
-      handler = require(`${myPathToController}${controller}`).default;
-      contr = new handler();
+
+      if(!pathHolder[myPath])
+      {
+            pathHolder[myPath] = [];
+      }
+
+        pathHolder[myPath].push({
+            requestMethod,
+            handler:contr[controllerMethod]
+        })
+
+    });
+
+  });
+
+
+
+    for(var path in pathHolder)
+    {
+
+        if(Object.hasOwnProperty.call(pathHolder, path))
+        {
+            var routesForPath = pathHolder[path];
+
+            for(var rt in routesForPath)
+            {
+                if(Object.hasOwnProperty.call(routesForPath, rt))
+                {
+                    var oneRoute = routesForPath[rt];
+
+                    ((router.route(path))[oneRoute.requestMethod])(oneRoute.handler);
+                }
+
+            }
+
+        }
     }
 
-    if (requestMethod === 'get') {
-      router.route(myPath).get(contr[controllerMethod]);
-    } else if (requestMethod === 'post') {
-      router.route(myPath).post(contr[controllerMethod]);
-    } else if (requestMethod === 'put') {
-      router.route(myPath).put(contr[controllerMethod]);
-    } else if (requestMethod === 'delete') {
-      router.route(myPath).delete(contr[controllerMethod]);
-    }
-  });
+
 
   return router;
 };
