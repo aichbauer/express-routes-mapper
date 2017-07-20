@@ -5,7 +5,7 @@ import path from 'path';
 const router = express.Router();
 const cwd = process.cwd();
 
-const isConstructor = (func) => {
+const isConstructora = (func) => {
   try {
     new func();
   } catch (err) {
