@@ -5,10 +5,8 @@ const routes = {
   'GET /user': 'ClassExportDefault.get',
   'POST /user/:name': 'ClassModuleExports.create',
   'PUT /user/:name/:id': 'FunctionModuleExports.update',
-  'DELETE /user/:name/:id': 'FunctionExportDefault.destroy',
+  'DELETE /user/:name/:id': 'Function.Export.Default.destroy',
 };
-
-const routes2 = {};
 
 test('testing', (t) => {
   const router = mapRoutes(routes, 'test/fixtures/controllers/');
