@@ -60,4 +60,4 @@ const mapRoutes = (routes, pathToController) => {
   return router;
 };
 
-module.exports = mapRoutes;
+export default mapRoutes;
