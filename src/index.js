@@ -2,18 +2,11 @@ import entries from 'object.entries';
 import express from 'express';
 import path from 'path';
 
+import splitByLastDot from './helpers/splitByLastDot';
+import isConstructor from './helpers/isConstrutor';
+
 const router = express.Router();
 const cwd = process.cwd();
-
-const isConstructor = (func) => {
-  try {
-    new func();
-  } catch (err) {
-    return false;
-  }
-
-  return true;
-};
 
 const mapRoutes = (routes, pathToController) => {
   let requestMethodPath;
@@ -34,8 +27,8 @@ const mapRoutes = (routes, pathToController) => {
     requestMethodPath = value[0].replace(/\s\s+/g, ' ');
     requestMethod = (requestMethodPath.split(' ')[0]).toLocaleLowerCase();
     myPath = requestMethodPath.split(' ')[1];
-    controller = value[1].split('.')[0];
-    controllerMethod = value[1].split('.')[1];
+    controller = splitByLastDot(value[1])[0];
+    controllerMethod = splitByLastDot(value[1])[1];
 
     try {
       handler = require(`${myPathToController}${controller}`);
