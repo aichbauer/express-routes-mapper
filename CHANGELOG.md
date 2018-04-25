@@ -1,3 +1,12 @@
+1.0.2 - April, 25 2018
+
+* 9fa2b4b Docs: add changelog (#18) (Lukas Aichbauer)
+* 81f0e17 Fix: instantiate a new router for separated routes (fixes #15) (#16) (Lukas Aichbauer)
+* 545281c Chore: test against latest versions, + node v10 (#17) (Jan Peer Stöcklmair)
+* 2cd29e7 CI: test node version 4,6,8 (#14) (Lukas Aichbauer)
+* cd8b345 Refactor: add add-module-exports (#13) (Lukas Aichbauer)
+* 509e0f8 Feat: split controller and function by last dot (closes #8) (#12) (Lukas Aichbauer)
+
 1.0.1 - June, 01 2017
 
 * b9bd80f v1.0.1 (aichbauer)
