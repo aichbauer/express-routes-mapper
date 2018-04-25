@@ -8,8 +8,20 @@ const routes = {
   'DELETE /user/:name/:id': 'Function.Export.Default.destroy',
 };
 
+const privateRoutes = {
+  'GET /user': 'ClassExportDefault.get',
+  'POST /user/:name': 'ClassModuleExports.create',
+};
+
+const publicRoutes = {
+  'PUT /user/:name/:id': 'FunctionModuleExports.update',
+  'DELETE /user/:name/:id': 'Function.Export.Default.destroy',
+};
+
 test('testing', (t) => {
   const router = mapRoutes(routes, 'test/fixtures/controllers/');
+
+  t.is(router.stack.length, 4);
 
   // CLASS EXPORT DEFAULT
   // method
@@ -60,4 +72,13 @@ test('testing', (t) => {
   t.is('function', typeof (router.stack[3].route.stack[0].handle));
 
   t.is('function', typeof (router));
+});
+
+test('private and public are seperated', (t) => {
+  const router = mapRoutes(privateRoutes, 'test/fixtures/controllers/');
+  const router2 = mapRoutes(publicRoutes, 'test/fixtures/controllers/');
+
+  // check if routes are not available on other router
+  t.is(router.stack.length, 2);
+  t.is(router2.stack.length, 2);
 });
