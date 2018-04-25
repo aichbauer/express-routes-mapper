@@ -4,6 +4,10 @@
 
 > A simple package to map your routes for your expressjs application
 
+---
+**IMPORTANT: v1.0.2 fixed a security vulnerability. Every version up to v1.0.1 is not save for production. Update your current version to v1.0.2. You can find more information [here](https://github.com/aichbauer/express-routes-mapper/issues/15).**
+---
+
 ## Getting started
 
 - [Install](#install)
