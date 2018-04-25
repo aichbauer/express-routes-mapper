@@ -5,10 +5,10 @@ import path from 'path';
 import splitByLastDot from './helpers/splitByLastDot';
 import isConstructor from './helpers/isConstrutor';
 
-const router = express.Router();
 const cwd = process.cwd();
 
 const mapRoutes = (routes, pathToController) => {
+  const router = express.Router();
   let requestMethodPath;
   let requestMethod;
 
