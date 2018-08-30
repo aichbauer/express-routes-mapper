@@ -1,5 +1,5 @@
 const routes = {
-  'GET /user:id': 'UserController.get',
+  'GET /user/:id': 'UserController.get',
   'POST /user': 'UserController.create',
 };
 

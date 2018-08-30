@@ -2,31 +2,37 @@
 
 ## Getting started
 
-### 1.) Install dependencies
-```
+### 1. Install dependencies
+```bash
 $ npm i
 ```
 
-### 2.) Transpile and run application
+OR 
+```bash
+$ yarn
 ```
-$ grunt serve
+
+### 2. Transpile and run application
+```bash
+$ npm start
 ```
 
-### 3.) Test API
+### 3. Test API
 
-Open [Postman](https://www.getpostman.com/)
+  Open [Postman](https://www.getpostman.com/)
 
-select `POST` method and type `localhost:3338/user`
+  #### a. `POST /user`
 
-click on body, select `x-www-form-urlencoded`
+    select `POST` method and type `localhost:3338/user`
 
-type name for `key` and somthing for `value`
+    click on body, select `x-www-form-urlencoded`
 
-hit send
+    type name for `key` and something for `value`
 
-you should get 
+    hit `send` button. you should get `create user: something` as respond
 
-`create user: something`
+  #### b. `GET /user/:id`
 
-as respond
+    select `GET` method and type (for example) `localhost:3338/user/id`
 
+    hit `send` button. you should get response text `user with id: 1`
