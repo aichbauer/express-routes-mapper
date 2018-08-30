@@ -32,7 +32,7 @@ const mapRoutes = (routes, pathToController) => {
 
     try {
       handler = require(`${myPathToController}${controller}`).default;
-      
+
       const isConstructable = isConstructor(handler);
 
       if (isConstructable) {
@@ -46,15 +46,7 @@ const mapRoutes = (routes, pathToController) => {
       contr = new handler();
     }
 
-    if (requestMethod === 'get') {
-      router.route(myPath).get(contr[controllerMethod]);
-    } else if (requestMethod === 'post') {
-      router.route(myPath).post(contr[controllerMethod]);
-    } else if (requestMethod === 'put') {
-      router.route(myPath).put(contr[controllerMethod]);
-    } else if (requestMethod === 'delete') {
-      router.route(myPath).delete(contr[controllerMethod]);
-    }
+    router.route(myPath)[requestMethod](contr[controllerMethod]);
   });
 
   return router;
