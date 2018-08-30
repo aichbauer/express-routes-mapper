@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "pretest": "npm run lint && npm run babel",
-    "test": "nyc ava",
+    "test": "cross-env NODE_ENV=test nyc ava",
     "lint": "eslint ./src/index.js",
     "lintFix": "eslint ./src/index.js --fix",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
@@ -32,18 +32,20 @@
   "author": "Lukas Aichbauer  <l.aichbauer@gmail.com> (https://github.com/aichbauer/)",
   "license": "MIT",
   "dependencies": {
-    "babel-core": "^6.23.1",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.2.1",
-    "babel-register": "^6.23.0",
-    "express": "^4.15.2",
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
+    "express": "^4.16.3",
     "object.entries": "^1.0.4"
   },
   "devDependencies": {
     "ava": "^0.18.2",
-    "babel-cli": "^6.24.0",
+    "babel-plugin-istanbul": "^5.0.1",
     "coveralls": "^2.12.0",
+    "cross-env": "^5.2.0",
     "eslint": "^3.17.1",
     "eslint-config-airbnb-base": "^11.1.1",
     "eslint-plugin-import": "^2.2.0",
@@ -52,13 +54,16 @@
   },
   "ava": {
     "require": [
-      "babel-core/register"
+      "@babel/register"
     ]
   },
   "nyc": {
     "exclude": [
       "test",
       "examples"
-    ]
+    ],
+    "all": true,
+    "sourceMap": false,
+    "instrument": false
   }
 }
