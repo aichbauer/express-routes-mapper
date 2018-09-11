@@ -32,16 +32,16 @@
   "author": "Lukas Aichbauer  <l.aichbauer@gmail.com> (https://github.com/aichbauer/)",
   "license": "MIT",
   "dependencies": {
-    "@babel/cli": "^7.0.0",
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "express": "^4.16.3",
     "object.entries": "^1.0.4"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "ava": "^0.18.2",
     "babel-plugin-istanbul": "^5.0.1",
     "coveralls": "^2.12.0",
