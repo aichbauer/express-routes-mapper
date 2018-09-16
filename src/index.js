@@ -31,7 +31,7 @@ const mapRoutes = (routes, pathToController) => {
     controllerMethod = splitByLastDot(value[1])[1];
 
     try {
-      handler = require(`${myPathToController}${controller}`);
+      handler = require(`${myPathToController}${controller}`).default;
 
       const isConstructable = isConstructor(handler);
 
@@ -41,20 +41,12 @@ const mapRoutes = (routes, pathToController) => {
         contr = handler();
       }
     } catch (err) {
-      require('babel-register');
-      handler = require(`${myPathToController}${controller}`).default;
+      require('@babel/register');
+      handler = require(`${myPathToController}${controller}`);
       contr = new handler();
     }
 
-    if (requestMethod === 'get') {
-      router.route(myPath).get(contr[controllerMethod]);
-    } else if (requestMethod === 'post') {
-      router.route(myPath).post(contr[controllerMethod]);
-    } else if (requestMethod === 'put') {
-      router.route(myPath).put(contr[controllerMethod]);
-    } else if (requestMethod === 'delete') {
-      router.route(myPath).delete(contr[controllerMethod]);
-    }
+    router.route(myPath)[requestMethod](contr[controllerMethod]);
   });
 
   return router;
