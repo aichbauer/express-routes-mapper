@@ -1,3 +1,7 @@
+1.0.3 - September, 16 2018
+
+* 4359f0b fix: update babel to version 7 (fixes #21) (#22) (Achmad Kurnianto)
+
 1.0.2 - April, 25 2018
 
 * 9fa2b4b Docs: add changelog (#18) (Lukas Aichbauer)
