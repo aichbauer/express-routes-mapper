@@ -1,3 +1,7 @@
+1.0.4 - October, 03 2018
+
+* b9a4352 Fix: add module export (fixes #23) (#25) (Lukas Aichbauer)
+
 1.0.3 - September, 16 2018
 
 * 4359f0b fix: update babel to version 7 (fixes #21) (#22) (Achmad Kurnianto)
