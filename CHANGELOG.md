@@ -1,3 +1,7 @@
+1.0.6 - October, 09 2018
+
+* a9101e4 Fix: class vs function (#28) (Lukas Aichbauer)
+
 1.0.5 - October, 09 2018
 
 * 7de1449 Chore: manage dependencies (#27) (Lukas Aichbauer)
