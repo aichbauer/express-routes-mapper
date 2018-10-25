@@ -34,7 +34,7 @@ $ yarn add express-routes-mapper
 
 After the installation you can import the package to your express project.
 
-### Routes
+## Routes
 
 Create your routes file:
 
@@ -48,7 +48,7 @@ export default routes; // module.exports = routes;
 
 Every post request to your server to route '/user' will call the function 'create' on the 'UserController'.
 
-### Controller
+## Controller
 
 Create a file named UserController.js
 
@@ -74,8 +74,40 @@ const UserController = () => {
 export default UserController; // module.exports = UserController;
 ```
 
+## Middlewares
+Middlewares allow you perform any set of operation on a particular route. They are executed from **top-to-bottom**, as they are arranged in the `middlewares` array.
 
-### Express with mapped Routes
+To proceed to the next middleware or the controller, never forget to call the `next()` function.
+
+For more examples, See [Middleware Example](https://github.com/aichbauer/express-routes-mapper/blob/master/examples/app/config/routes.js).
+
+```Javascript
+const checkIfAutheticated = (req, res, next) => {
+  console.log('authenticated');
+  next();
+};
+
+const verifyFacebookAuth = (req, res, next) => {
+  console.log('unverified');
+  return res
+    .status(400)
+    .json({status: false, message: 'Sorry, you aren\'t authorized on facebook'});
+};
+
+const routes = {
+  'GET /user:id': {
+    path: 'UserController.get',
+    middlewares: [
+         checkIfAutheticated,
+         verifyFacebookAuth,
+    ],
+    
+  'POST /user': 'UserController.create'
+  },
+};
+```
+
+## Express with mapped Routes
 
 I assume you have a folder structure like this, but it can be adapted to any folder structure.
 
