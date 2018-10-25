@@ -14,6 +14,7 @@
 - [Use](#use)
   - [Routes](#routes)
   - [Controller](#controller)
+  - [Middlewares](#middlewares)
   - [Express with mapped Routes](#express-with-mapped-routes)
 - [Supported Methods](#supported-methods)
 - [Dynamic Routes](#dynamic-routes)
@@ -79,7 +80,7 @@ Middlewares allow you perform any set of operation on a particular route. They a
 
 To proceed to the next middleware or the controller, never forget to call the `next()` function.
 
-For more examples, See [Middleware Example](https://github.com/aichbauer/express-routes-mapper/blob/master/examples/app/config/routes.js).
+For more examples, See [Middleware Example](./examples/app/config/routes.js).
 
 ```Javascript
 const checkIfAutheticated = (req, res, next) => {
@@ -160,11 +161,7 @@ server.listen(port, () => {
 ```
 
 ## Supported methods
-
-- **GET**
-- **POST**
-- **PUT**
-- **DELETE**
+All routes supported by the express framework is natively supported by this library (e.g. `GET`, `PUT`, `POST`, `DELETE` etc.).
 
 ```js
 const routes = {
@@ -172,6 +169,7 @@ const routes = {
   'POST /someroute' : 'SomeController.somefunction',
   'PUT /someroute' : 'SomeController.somefunction',
   'DELETE /someroute' : 'SomeController.somefunction',
+  // etc.
 };
 ```
 
@@ -203,3 +201,16 @@ const SomeController = () => {
 
 export default SomeController; // module.exports = SomeController;
 ```
+
+
+## Contribution
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -am 'Some commit message'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request 😉😉
+
+
+## License
+This project is licensed under the _____ License - see the [LICENSE.md](LICENSE) file for details.

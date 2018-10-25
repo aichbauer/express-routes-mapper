@@ -5,7 +5,10 @@ const routes = {
   'POST /user': 'UserController.get',
   'GET /middleware': {
     path: 'UserController.create',
-    middlewares: middleware2,
+    middlewares: [
+      middleware1,
+      middleware2,
+    ],
   },
 };
 
