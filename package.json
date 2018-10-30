@@ -10,6 +10,7 @@
     "lintFix": "eslint ./src/index.js --fix",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "prepublish": "npm run babel",
+    "build": "npm run babel",
     "precommit": "npm run lint",
     "prepush": "npm test",
     "babel": "babel src --out-dir lib"

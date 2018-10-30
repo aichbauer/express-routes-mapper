@@ -1,5 +1,7 @@
 import entries from 'object.entries';
-import { isString } from 'util';
+import {
+  isString,
+} from 'util';
 import express from 'express';
 import path from 'path';
 
@@ -8,7 +10,7 @@ import isConstructor from './helpers/isConstrutor';
 
 const cwd = process.cwd();
 
-const mapRoutes = (routes, pathToController) => {
+const mapRoutes = (routes, pathToController, middlewareGeneral) => {
   const router = express.Router();
   let requestMethodPath;
   let requestMethod;
@@ -25,7 +27,7 @@ const mapRoutes = (routes, pathToController) => {
   const routesArr = entries(routes);
 
   routesArr.forEach((value) => {
-    let middlewares = [];
+    let middlewares = [middlewareGeneral];
 
     requestMethodPath = value[0].replace(/\s\s+/g, ' ');
     requestMethod = requestMethodPath.split(' ')[0].toLocaleLowerCase();
@@ -49,9 +51,10 @@ const mapRoutes = (routes, pathToController) => {
         props.middlewares !== undefined &&
         Array.isArray(props.middlewares)
       ) {
-        middlewares = props.middlewares;
+        middlewares.push(...props.middlewares);
       }
     }
+    middlewares = middlewares.filter(el => el != null);
 
     try {
       handler = require(`${myPathToController}${controller}`);
