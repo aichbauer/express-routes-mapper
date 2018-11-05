@@ -10,7 +10,7 @@ import isConstructor from './helpers/isConstrutor';
 
 const cwd = process.cwd();
 
-const mapRoutes = (routes, pathToController, middlewareGeneral) => {
+const mapRoutes = (routes, pathToController, middlewareGenerals = []) => {
   const router = express.Router();
   let requestMethodPath;
   let requestMethod;
@@ -27,8 +27,15 @@ const mapRoutes = (routes, pathToController, middlewareGeneral) => {
   const routesArr = entries(routes);
 
   routesArr.forEach((value) => {
-    let middlewares = [middlewareGeneral];
-
+    let middlewares;
+    // to let use an array or only one function as general middlewares
+    if (Array.isArray(middlewareGenerals)) {
+      middlewares = [...middlewareGenerals];
+    } else if (typeof middlewareGenerals === 'function') {
+      middlewares = [middlewareGenerals];
+    } else {
+      middlewares = [];
+    }
     requestMethodPath = value[0].replace(/\s\s+/g, ' ');
     requestMethod = requestMethodPath.split(' ')[0].toLocaleLowerCase();
     myPath = requestMethodPath.split(' ')[1];
