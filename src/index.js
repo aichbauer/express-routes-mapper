@@ -15,10 +15,6 @@ const mapRoutes = (routes, pathToController, middlewareGenerals = []) => {
   let requestMethodPath;
   let requestMethod;
 
-  let controllerMethod;
-  let controller;
-  let contr;
-
   let handler;
 
   let myPath;
@@ -28,6 +24,9 @@ const mapRoutes = (routes, pathToController, middlewareGenerals = []) => {
 
   routesArr.forEach((value) => {
     let middlewares;
+    let controllerMethod;
+    let controller;
+    let contr;
     // to let use an array or only one function as general middlewares
     if (Array.isArray(middlewareGenerals)) {
       middlewares = [...middlewareGenerals];
@@ -78,8 +77,8 @@ const mapRoutes = (routes, pathToController, middlewareGenerals = []) => {
       handler = require(`${myPathToController}${controller}`).default;
       contr = new handler();
     }
-
-    router.route(myPath)[requestMethod](middlewares, contr[controllerMethod]);
+    const controllerFunc = (req, res, next) => contr[controllerMethod](req, res, next);
+    router.route(myPath)[requestMethod](middlewares, controllerFunc);
   });
 
   return router;
