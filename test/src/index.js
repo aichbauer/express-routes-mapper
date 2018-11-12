@@ -28,8 +28,6 @@ test('testing', (t) => {
   t.is('get', router.stack[0].route.stack[0].method);
   // route
   t.is('/user', router.stack[0].route.path);
-  // function name
-  t.is('get', router.stack[0].route.stack[0].name);
   // function to call
   t.is('function', typeof (router.stack[0].route.stack[0].handle));
 
@@ -40,8 +38,6 @@ test('testing', (t) => {
   t.is('/user/:name', router.stack[1].route.path);
   // keys for route
   t.is('name', router.stack[1].keys[0].name);
-  // function name
-  t.is('create', router.stack[1].route.stack[0].name);
   // function to call
   t.is('function', typeof (router.stack[1].route.stack[0].handle));
 
@@ -53,8 +49,6 @@ test('testing', (t) => {
   // keys for route
   t.is('name', router.stack[2].keys[0].name);
   t.is('id', router.stack[2].keys[1].name);
-  // function name
-  t.is('update', router.stack[2].route.stack[0].name);
   // function to call
   t.is('function', typeof (router.stack[2].route.stack[0].handle));
 
@@ -66,8 +60,6 @@ test('testing', (t) => {
   // keys for route
   t.is('name', router.stack[3].keys[0].name);
   t.is('id', router.stack[3].keys[1].name);
-  // function name
-  t.is('destroy', router.stack[3].route.stack[0].name);
   // function to call
   t.is('function', typeof (router.stack[3].route.stack[0].handle));
 
