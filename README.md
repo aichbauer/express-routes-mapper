@@ -82,6 +82,25 @@ To proceed to the next middleware or the controller, never forget to call the `n
 
 For more examples, See [Middleware Example](./examples/app/config/routes.js).
 
+### Grouped Routes Middlewares
+Middlewares can be added to a general set of routes. Such middlewares would be executed before any of the controller methods are called.
+
+```Javascript
+const groupedMiddleware1 = (req, res, next) => {
+  next();
+};
+
+const groupedMiddleware2 = (req, res, next) => {
+  next();
+};
+
+const router = mapRoutes(routes, 'test/fixtures/controllers/', [groupedMiddleware1, groupedMiddleware2]);
+
+```
+
+### Middlewares On Routes
+Middlewares can also be added to just a single route path.
+
 ```Javascript
 const checkIfAutheticated = (req, res, next) => {
   console.log('authenticated');
