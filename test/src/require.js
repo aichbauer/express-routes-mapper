@@ -93,9 +93,6 @@ test('testing', (t) => {
   t.is('function', typeof (router.stack[3].route.stack[0].handle));
 
   // MIDDLEWARES
-  t.is(undefined, router.stack[4].route.stack[1].path);
-  t.is(undefined, router.stack[4].route.stack[2].path);
-  t.is(undefined, router.stack[5].route.stack[1].path);
   // route
   t.is('/user/middleware', router.stack[4].route.path);
   t.is('/user/one-middleware', router.stack[5].route.path);
@@ -175,9 +172,6 @@ test('testing general middleware', (t) => {
   t.is('function', typeof (router.stack[3].route.stack[0].handle));
 
   // MIDDLEWARES
-  t.is(undefined, router.stack[4].route.stack[1].path);
-  t.is(undefined, router.stack[4].route.stack[2].path);
-  t.is(undefined, router.stack[5].route.stack[1].path);
   // route
   t.is('/user/middleware', router.stack[4].route.path);
   t.is('/user/one-middleware', router.stack[5].route.path);
