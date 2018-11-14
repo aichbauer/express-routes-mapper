@@ -102,9 +102,9 @@ const routes = {
          checkIfAutheticated,
          verifyFacebookAuth,
     ],
-    
-  'POST /user': 'UserController.create'
   },
+  
+  'POST /user': 'UserController.create'
 };
 ```
 
@@ -213,4 +213,4 @@ export default SomeController; // module.exports = SomeController;
 
 
 ## License
-This project is licensed under the _____ License - see the [LICENSE.md](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
