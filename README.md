@@ -14,6 +14,7 @@
 - [Use](#use)
   - [Routes](#routes)
   - [Controller](#controller)
+  - [Middlewares](#middlewares)
   - [Express with mapped Routes](#express-with-mapped-routes)
 - [Supported Methods](#supported-methods)
 - [Dynamic Routes](#dynamic-routes)
@@ -34,7 +35,7 @@ $ yarn add express-routes-mapper
 
 After the installation you can import the package to your express project.
 
-### Routes
+## Routes
 
 Create your routes file:
 
@@ -48,7 +49,7 @@ export default routes; // module.exports = routes;
 
 Every post request to your server to route '/user' will call the function 'create' on the 'UserController'.
 
-### Controller
+## Controller
 
 Create a file named UserController.js
 
@@ -74,8 +75,59 @@ const UserController = () => {
 export default UserController; // module.exports = UserController;
 ```
 
+## Middlewares
+Middlewares allow you perform any set of operation on a particular route. They are executed from **top-to-bottom**, as they are arranged in the `middlewares` array.
 
-### Express with mapped Routes
+To proceed to the next middleware or the controller, never forget to call the `next()` function.
+
+For more examples, See [Middleware Example](./examples/app/config/routes.js).
+
+### Grouped Routes Middlewares
+Middlewares can be added to a general set of routes. Such middlewares would be executed before any of the controller methods are called.
+
+```Javascript
+const groupedMiddleware1 = (req, res, next) => {
+  next();
+};
+
+const groupedMiddleware2 = (req, res, next) => {
+  next();
+};
+
+const router = mapRoutes(routes, 'test/fixtures/controllers/', [groupedMiddleware1, groupedMiddleware2]);
+
+```
+
+### Middlewares On Routes
+Middlewares can also be added to just a single route path.
+
+```Javascript
+const checkIfAutheticated = (req, res, next) => {
+  console.log('authenticated');
+  next();
+};
+
+const verifyFacebookAuth = (req, res, next) => {
+  console.log('unverified');
+  return res
+    .status(400)
+    .json({status: false, message: 'Sorry, you aren\'t authorized on facebook'});
+};
+
+const routes = {
+  'GET /user:id': {
+    path: 'UserController.get',
+    middlewares: [
+         checkIfAutheticated,
+         verifyFacebookAuth,
+    ],
+  },
+  
+  'POST /user': 'UserController.create'
+};
+```
+
+## Express with mapped Routes
 
 I assume you have a folder structure like this, but it can be adapted to any folder structure.
 
@@ -128,11 +180,7 @@ server.listen(port, () => {
 ```
 
 ## Supported methods
-
-- **GET**
-- **POST**
-- **PUT**
-- **DELETE**
+All routes supported by the express framework is natively supported by this library (e.g. `GET`, `PUT`, `POST`, `DELETE` etc.).
 
 ```js
 const routes = {
@@ -140,6 +188,7 @@ const routes = {
   'POST /someroute' : 'SomeController.somefunction',
   'PUT /someroute' : 'SomeController.somefunction',
   'DELETE /someroute' : 'SomeController.somefunction',
+  // etc.
 };
 ```
 
@@ -171,3 +220,16 @@ const SomeController = () => {
 
 export default SomeController; // module.exports = SomeController;
 ```
+
+
+## Contribution
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -am 'Some commit message'`
+4. Push to the branch: `git push origin feature-name`
+5. Submit a pull request 😉😉
+
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
