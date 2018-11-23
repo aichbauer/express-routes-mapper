@@ -1,3 +1,10 @@
+1.1.0 - November, 23 2018
+
+* d844888 Chore: add license (#34) (Lukas Aichbauer)
+* a8afe1f Chore: rm package-lock use yarn.lock (#33) (Lukas Aichbauer)
+* fa631f6 Feat(Middleware): add Middleware Functionality (#30) (Tochukwu Nkemdilim)
+* 2a61ffd Docs: fix typo in important message (#26) (Julio Ojeda)
+
 1.0.6 - October, 09 2018
 
 * a9101e4 Fix: class vs function (#28) (Lukas Aichbauer)
