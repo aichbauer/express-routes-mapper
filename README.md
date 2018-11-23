@@ -76,6 +76,7 @@ export default UserController; // module.exports = UserController;
 ```
 
 ## Middlewares
+
 Middlewares allow you perform any set of operation on a particular route. They are executed from **top-to-bottom**, as they are arranged in the `middlewares` array.
 
 To proceed to the next middleware or the controller, never forget to call the `next()` function.
@@ -83,6 +84,7 @@ To proceed to the next middleware or the controller, never forget to call the `n
 For more examples, See [Middleware Example](./examples/app/config/routes.js).
 
 ### Grouped Routes Middlewares
+
 Middlewares can be added to a general set of routes. Such middlewares would be executed before any of the controller methods are called.
 
 ```Javascript
@@ -99,6 +101,7 @@ const router = mapRoutes(routes, 'test/fixtures/controllers/', [groupedMiddlewar
 ```
 
 ### Middlewares On Routes
+
 Middlewares can also be added to just a single route path.
 
 ```Javascript
@@ -180,6 +183,7 @@ server.listen(port, () => {
 ```
 
 ## Supported methods
+
 All routes supported by the express framework is natively supported by this library (e.g. `GET`, `PUT`, `POST`, `DELETE` etc.).
 
 ```js
@@ -221,7 +225,6 @@ const SomeController = () => {
 export default SomeController; // module.exports = SomeController;
 ```
 
-
 ## Contribution
 
 1. Fork it!
@@ -230,6 +233,6 @@ export default SomeController; // module.exports = SomeController;
 4. Push to the branch: `git push origin feature-name`
 5. Submit a pull request 😉😉
 
-
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
+
+MIT © Lukas Aichbauer
