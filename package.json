@@ -37,7 +37,8 @@
     "@babel/register": "^7.0.0",
     "@babel/runtime": "^7.1.2",
     "express": "^4.16.3",
-    "object.entries": "^1.0.4"
+    "object.entries": "^1.0.4",
+    "core-js": "2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
